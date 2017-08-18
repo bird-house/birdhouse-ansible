@@ -4,11 +4,11 @@ An ansible playbook to install slurm for Birdhouse demo.
 
 ## Install slurm
 
-Run playbook with defaults::
+Run playbook with defaults:
 
   $ ansible-playbook playbooks/slurm.yml
 
-Run playbook with ``slurm`` hostname::
+Run playbook with `slurm` hostname:
 
   $ ansible-playbook playbooks/slurm.yml -e slurm_server_name=slurm
 
