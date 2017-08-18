@@ -1,0 +1,10 @@
+---
+- name: Install supervisor on Debian
+  apt: name=supervisor
+  when: ansible_os_family == "Debian"
+
+- name: create supervisord.conf
+  template: dest=/etc/supervisor/supervisord.conf src=supervisord.conf
+
+- name: create supervisor slurm.conf
+  template: dest=/etc/supervisor/conf.d/slurm.conf src=slurm.conf

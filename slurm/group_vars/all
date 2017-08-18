@@ -1,0 +1,13 @@
+---
+# Variables listed here are applicable to all host groups
+
+# Type of node to install: front, worker or client
+slurm_type_of_node: front
+# Name of the SLURM server
+slurm_server_name: localhost
+# List of the name of the WNs
+slurm_wn_nodenames: []
+# Number of CPUs of the WNs
+slurm_wn_cpus: 1
+# Password used to derive a munge key for authentication between the server and the workers
+slurm_password: h9iynbv345zo9qwts

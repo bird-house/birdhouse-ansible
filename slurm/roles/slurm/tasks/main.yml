@@ -1,0 +1,32 @@
+---
+- name: install slurm packages on Debian
+  apt: name=slurm-llnl
+  when: ansible_os_family == "Debian"
+
+- name: set SLURM facts on Debian
+  set_fact:
+    SLURM_CONF: /etc/slurm-llnl/slurm.conf
+    SLURM_CONTROL: slurm-llnl
+    SLURM_SERVICE: slurm-llnl
+  when: ansible_os_family == "Debian"
+
+- name: create folders used by SLURM and set slurm owner
+  file: path={{ item }} state=directory owner=slurm group=slurm mode=0755
+  with_items:
+    - /var/log/slurm
+
+- name: create spool folder used by SLURM and set slurm owner
+  file: path={{ item }} state=directory owner=root group=slurm mode=0775
+  with_items:
+    - /var/spool
+
+- name: fix slurm files
+  file: path={{ item }} state=touch owner=slurm group=slurm mode=0644
+  with_items:
+    - /var/log/slurm/job_completions
+    - /var/log/slurm/accounting
+    - /var/spool/last_config_lite
+    - /var/spool/last_config_lite.new
+
+- name: create slurm.conf
+  template: dest={{ SLURM_CONF }} src=slurm.conf

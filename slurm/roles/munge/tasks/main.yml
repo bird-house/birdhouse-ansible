@@ -1,0 +1,12 @@
+---
+- name: install munge
+  package: name=munge
+
+- name: create munge key
+  command: /usr/sbin/create-munge-key
+
+- name: create folders used by munge and set munge owner
+  file: path={{item}} state=directory owner=munge group=munge mode=0755
+  with_items:
+    - /var/run/munge
+    - /var/log/munge
