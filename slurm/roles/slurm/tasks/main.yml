@@ -20,6 +20,9 @@
   with_items:
     - /var/spool
 
+- stat: path=/var/log/slurm/job_completions
+  register: slurm_log
+
 - name: fix slurm files
   file: path={{ item }} state=touch owner=slurm group=slurm mode=0644
   with_items:
@@ -27,6 +30,7 @@
     - /var/log/slurm/accounting
     - /var/spool/last_config_lite
     - /var/spool/last_config_lite.new
+  when: not slurm_log.stat.exists
 
 - name: create slurm.conf
   template: dest={{ SLURM_CONF }} src=slurm.conf
