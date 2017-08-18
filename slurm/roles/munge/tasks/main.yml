@@ -2,8 +2,12 @@
 - name: install munge
   package: name=munge
 
+- stat: path=/etc/munge/munge.key
+  register: munge_key
+
 - name: create munge key
   command: /usr/sbin/create-munge-key
+  when: not munge_key.stat.exists
 
 - name: create folders used by munge and set munge owner
   file: path={{item}} state=directory owner=munge group=munge mode=0755
