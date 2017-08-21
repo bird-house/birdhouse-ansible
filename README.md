@@ -1,11 +1,11 @@
 # birdhouse-ansible
 Ansible playbooks for Birdhouse installation.
 
-## Bootstrap Ansible
+## Install Ansible
 
-To install Ansible on your host run the bootstrap script:
+Install ansible via conda:
 
-    $ bash bootstrap.sh
+    $ conda install -c conda-forge ansible
 
 ## Links
 
