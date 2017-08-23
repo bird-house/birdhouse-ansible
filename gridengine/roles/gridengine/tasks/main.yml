@@ -33,6 +33,10 @@
 - name: create allhosts
   template: dest=/etc/gridengine/files/host_groups/allhosts src=allhosts
 
+- name: start gridengine qmaster
+  action: shell bash -lc '/usr/sbin/sge_qmaster'
+  ignore_errors: yes
+
 - name: add the frontend as submission host
   action: shell bash -lc 'qconf -as {{ sge_server_name }}'
   ignore_errors: yes
