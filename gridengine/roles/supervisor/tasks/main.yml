@@ -4,7 +4,7 @@
   when: ansible_os_family == "Debian"
 
 - name: create supervisord.conf
-  template: dest=/opt/birdhouse/etc/supervisor/supervisord.conf src=supervisord.conf
+  template: dest=/etc/supervisor/supervisord.conf src=supervisord.conf
 
 - name: create supervisor gridengine.conf
-  template: dest=/opt/birdhouse/etc/supervisor/conf.d/gridengine.conf src=gridengine.conf
+  template: dest=/etc/supervisor/conf.d/gridengine.conf src=gridengine.conf

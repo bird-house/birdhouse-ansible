@@ -51,3 +51,7 @@
 - name: create default queue
   action: shell bash -lc 'qconf -Aq /etc/gridengine/files/queues/default.q'
   ignore_errors: yes
+
+- name: kill gridengine qmaster
+  action: shell bash -lc 'killall sge_qmaster'
+  ignore_errors: yes
