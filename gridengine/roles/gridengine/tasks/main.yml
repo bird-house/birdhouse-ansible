@@ -1,4 +1,12 @@
 ---
+- name: prevent the gridengine install dialogs
+  shell: echo {{ item }} | debconf-set-selections
+  with_items:
+  - "* shared/gridenginemaster select {{sge_server_name}}"
+  - "* shared/gridenginecell select default"
+  - "* shared/gridengineconfig select true"
+  - "* postfix/main_mailer_type select No configuration"
+
 - name: install gridengine packages on Debian
   apt: name={{ item }} state=installed
   with_items:
