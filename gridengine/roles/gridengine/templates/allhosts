@@ -1,0 +1,2 @@
+group_name @allhosts
+hostlist {{ sge_server_name }}

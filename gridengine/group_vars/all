@@ -2,6 +2,6 @@
 # Variables listed here are applicable to all host groups
 
 # Type of node to install: front, worker or client
-gridengine_type_of_node: front
-# Name of the SLURM server
-gridengine_server_name: localhost
+sge_type_of_node: front
+# Name of the gridengine server
+sge_server_name: localhost
