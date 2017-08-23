@@ -1,24 +1,11 @@
 ---
-- name: prevent the gridengine install dialogs
-  shell: echo {{ item }} | debconf-set-selections
-  with_items:
-  - "* shared/gridenginemaster select {{sge_server_name}}"
-  - "* shared/gridenginecell select default"
-  - "* shared/gridengineconfig select true"
-  - "* postfix/main_mailer_type select No configuration"
+- name: Fail if OS distro is Centos
+  fail:
+        msg="The role does not work with Centos"
+  when: ansible_os_family == "RedHat"
 
-- name: install gridengine packages on Debian
-  apt: name={{ item }} state=installed
-  with_items:
-    - gridengine-master
-    - gridengine-exec
-    - gridengine-client
-  when: ansible_os_family == "Debian"
-
-- name: Set Debian facts
-  set_fact:
-    SGE_ROOT: /var/lib/gridengine
-    EXEC_SERVICE: gridengine-exec
+- name: Include "{{ansible_os_family}}" gridengine recipe
+  include: "{{ansible_os_family}}.yml"
 
 - name: create folders used by gridengine
   file: path={{ item }} state=directory
@@ -56,5 +43,5 @@
   ignore_errors: yes
 
 - name: kill gridengine qmaster
-  action: shell bash -lc 'killall sge_qmaster'
+  action: shell bash -lc 'kill -9 `pidof sge_qmaster`'
   ignore_errors: yes
