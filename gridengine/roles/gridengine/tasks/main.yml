@@ -7,41 +7,5 @@
 - name: Include "{{ansible_os_family}}" gridengine recipe
   include: "{{ansible_os_family}}.yml"
 
-- name: create folders used by gridengine
-  file: path={{ item }} state=directory
-  with_items:
-    - /etc/gridengine/files/host_groups
-    - /etc/gridengine/files/exec_hosts
-    - /etc/gridengine/files/queues
-
-- name: Replace bootstrap (ignore FQDN)
-  copy: dest=/var/lib/gridengine/default/common/bootstrap src=bootstrap mode=0644 force=no
-
-- name: Set the gridengine qmaster node
-  action: copy dest={{ SGE_ROOT }}/default/common/act_qmaster content={{ sge_server_name }}
-
-- name: create allhosts
-  template: dest=/etc/gridengine/files/host_groups/allhosts src=allhosts
-
-- name: start gridengine qmaster
-  action: shell bash -lc '/usr/sbin/sge_qmaster'
-  ignore_errors: yes
-
-- name: add the frontend as submission host
-  action: shell bash -lc 'qconf -as {{ sge_server_name }}'
-  ignore_errors: yes
-
-- name: Copy 'default_q.conf' file
-  copy: dest=/etc/gridengine/files/queues/default.q src=default_q.conf mode=0644 force=no
-
-- name: add hosts to the default queue
-  action: shell bash -lc 'qconf -Ahgrp /etc/gridengine/files/host_groups/allhosts'
-  ignore_errors: yes
-
-- name: create default queue
-  action: shell bash -lc 'qconf -Aq /etc/gridengine/files/queues/default.q'
-  ignore_errors: yes
-
-- name: kill gridengine qmaster
-  action: shell bash -lc 'kill -9 `pidof sge_qmaster`'
-  ignore_errors: yes
+- name: Include "{{sge_type_of_node}}" gridengine recipe
+  include: "{{sge_type_of_node}}.yml"
