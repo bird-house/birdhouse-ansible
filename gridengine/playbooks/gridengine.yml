@@ -4,4 +4,4 @@
   roles:
     - common
     - gridengine
-    #- supervisor
+    - supervisor
