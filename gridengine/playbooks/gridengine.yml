@@ -1,0 +1,7 @@
+---
+# This playbook is used to install slurm.
+- hosts: all
+  roles:
+    - common
+    - gridengine
+    - supervisor

@@ -1,0 +1,4 @@
+---
+- name: Install common packages on Debian
+  apt: name=build-essential
+  when: ansible_os_family == "Debian"
