@@ -8,6 +8,6 @@ sge_type_of_node: front
 # Name of submission node
 sge_submission_node: localhost
 # Prefix to set to the SGE working nodes
-vnode_prefix: wn
+worker_node_prefix: worker
 # Number of Maximun nodes
 max_number_of_nodes: 1

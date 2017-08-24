@@ -4,7 +4,7 @@
   shell: |
     grep -q "\<{{sge_submission_node}}\>" /etc/hosts || echo "127.0.0.1 {{sge_submission_node}}" {{sge_submission_node}} >> /etc/hosts;
     for i in `seq 1 {{max_number_of_nodes}}`; do
-      item="{{vnode_prefix}}${i}";
+      item="{{worker_node_prefix}}${i}";
       grep -q "\<${item}\>" /etc/hosts || echo "127.0.0.1 ${item}" ${item} >> /etc/hosts;
     done
 
@@ -34,7 +34,7 @@
   ignore_errors: yes
 
 - name: add execution hosts
-  action: shell bash -lc 'qconf -ah {{vnode_prefix}}{{item}}'
+  action: shell bash -lc 'qconf -ah {{worker_node_prefix}}{{item}}'
   with_sequence: start=1 end={{max_number_of_nodes}}
   ignore_errors: yes
 

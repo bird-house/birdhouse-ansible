@@ -19,7 +19,14 @@
 
 - name: install gridengine worker on Debian
   apt: name=gridengine-exec
-  when: sge_type_of_node == "wn"
+  when: sge_type_of_node == "worker"
+
+- name: install drmaa gridengine packages
+  apt: name={{ item }} state=installed
+  with_items:
+    - gridengine-drmaa1.0
+    - gridengine-drmaa-dev
+  when: sge_type_of_node == "client"
 
 - name: Set Debian facts
   set_fact:

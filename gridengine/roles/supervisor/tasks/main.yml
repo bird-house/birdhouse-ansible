@@ -12,4 +12,4 @@
 
 - name: create supervisor sge_execd.conf
   template: dest=/etc/supervisor/conf.d/sge_execd.conf src=sge_execd.conf
-  when: sge_type_of_node == "wn"
+  when: sge_type_of_node == "worker"
