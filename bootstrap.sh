@@ -15,7 +15,7 @@ install_pkgs() {
   if [ -f /etc/debian_version ] ; then
     echo "Install Debian/Ubuntu packages for Ansible ..."
     apt-get update --fix-missing
-    apt-get install -y curl bzip2 ca-certificates \
+    apt-get install -y python curl bzip2 ca-certificates \
       libglib2.0-0 libxext6 libsm6 libxrender1
   elif [ -f /etc/redhat-release ] ; then
     echo "Install CentOS packages for Ansible ..."
