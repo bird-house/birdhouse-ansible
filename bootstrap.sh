@@ -1,25 +1,44 @@
 #!/bin/bash
+#
+# Name: bootstrap.sh
+# Description: Bootstrap the Ansible installation with conda.
+
+CONDA_PREFIX=$HOME/miniconda2
+SYS_INSTALL=0
 
 usage() {
   cat <<EOT
   Usage : bootstrap.sh [option]
 
   Options:
-    -h   - Print this help message.
-    -i   - Install system packages.
+    -h           print this help message and exit
+    -i           install system packages neccessary for ansible (needs sudo)
+    -p PREFIX    install prefix, defaults to $CONDA_PREFIX
 EOT
-  exit 1
+  exit 2
+}
+
+enable_sudo() {
+  if [[ $EUID -eq 0 ]]; then
+    echo "Enable sudo ..."
+    if [ -f /etc/debian_version ] ; then
+      apt-get update -y && apt-get install -y sudo
+    elif [ -f /etc/redhat-release ] ; then
+      yum update -y && yum install -y sudo
+    fi
+  fi
 }
 
 install_pkgs() {
+  enable_sudo
   if [ -f /etc/debian_version ] ; then
     echo "Install Debian/Ubuntu packages for Ansible ..."
-    apt-get update --fix-missing
-    apt-get install -y python curl bzip2 ca-certificates \
+    sudo apt-get update --fix-missing
+    sudo apt-get install -y python curl bzip2 ca-certificates \
       libglib2.0-0 libxext6 libsm6 libxrender1
   elif [ -f /etc/redhat-release ] ; then
     echo "Install CentOS packages for Ansible ..."
-    yum update -y && yum install -y curl bzip2
+    sudo yum update -y && sudo yum install -y curl bzip2
   elif [ `uname -s` = "Darwin" ] ; then
     echo "Install Homebrew packages for Ansible ..."
     brew install curl libmagic
@@ -27,44 +46,39 @@ install_pkgs() {
 }
 
 install_conda() {
-  if [ ! -d /opt/conda ] ; then
+  if [ ! -d $CONDA_PREFIX ] ; then
     curl -L -o /tmp/miniconda.sh https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh
-    bash /tmp/miniconda.sh -b -p /opt/conda
+    bash /tmp/miniconda.sh -b -p $CONDA_PREFIX
     rm /tmp/miniconda.sh
   fi
-  export PATH=/opt/conda/bin:$PATH
+  export PATH=$CONDA_PREFIX/bin:$PATH
 }
 
 install_ansible() {
   conda install -y -c conda-forge ansible
 }
 
-bootstrap() {
-  echo "Bootstrapping ..."
-  if [ $# -gt 0 ] && [ $1 = '-i' ]; then
-    install_pkgs
-  fi
-  if [ $# -eq 0 ] || [ $1 = '-b' ] || [ $1 = '-i' ]; then
-    install_conda
-    install_ansible
-  fi
-  echo "Bootstrapping done"
-}
-
-# Handling arguments
-
-if [ $# -gt 1 ]; then
-  echo -e "Too many arguments.\n"
-  usage
+while getopts "hip:" x; do
+  case "$x" in
+    h)
+      usage
+      ;;
+    i)
+      SYS_INSTALL=1
+      ;;
+    p)
+      CONDA_PREFIX="$OPTARG"
+      ;;
+    ?)
+      echo "Error: did not recognize option, please try -h"
+      exit 1
+      ;;
+  esac
+done
+echo "Bootstrapping ..."
+if [[ $SYS_INSTALL == 1 ]]; then
+  install_pkgs
 fi
-
-if [ $# -gt 0 ] && [ $1 = '-h' ]; then
-  usage
-fi
-
-if [ $# -eq 0 ] || [ $1 = '-b' ] || [ $1 = '-i' ]; then
-  bootstrap $@
-else
-  echo -e "Unknown option: $1.\n"
-  usage
-fi
+install_conda
+install_ansible
+echo "Bootstrapping done"
