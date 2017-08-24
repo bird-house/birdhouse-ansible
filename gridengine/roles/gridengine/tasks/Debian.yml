@@ -6,15 +6,20 @@
   - "* shared/gridenginecell select default"
   - "* shared/gridengineconfig select true"
   - "* postfix/main_mailer_type select No configuration"
-  when: ansible_os_family == "Debian"
 
-- name: install gridengine packages on Debian
+- name: install common gridengine packages
   apt: name={{ item }} state=installed
   with_items:
-    - gridengine-master
-    - gridengine-exec
+    - gridengine-common
     - gridengine-client
-  when: ansible_os_family == "Debian"
+
+- name: install gridengine master on Debian
+  apt: name=gridengine-master state=installed
+  when: sge_type_of_node == "front"
+
+- name: install gridengine worker on Debian
+  apt: name=gridengine-exec
+  when: sge_type_of_node == "wn"
 
 - name: Set Debian facts
   set_fact:
