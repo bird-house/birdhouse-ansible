@@ -11,12 +11,12 @@ Install Ansible via conda:
 
 Run Ansible in docker container:
 
-    $ docker run -it --rm -v /home/pingu/sandbox/birdhouse/birdhouse-ansible:/opt/ansible ubuntu /bin/bash
+    $ docker run -it --rm -v /home/pingu/sandbox/birdhouse/birdhouse-ansible:/opt/ansible debian /bin/bash
     > cd /opt/ansible
     > bash bootstrap.sh -i -p /opt/conda
     > export PATH=/opt/conda/bin:$PATH
     > cd gridengine
-    > ansible-playbook -i hosts playbooks/gridengine.yml
+    > ansible-playbook playbooks/gridengine.yml
 
 ## Links
 
