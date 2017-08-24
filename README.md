@@ -3,17 +3,20 @@ Ansible playbooks for Birdhouse installation.
 
 ## Install Ansible
 
-Install ansible via conda:
+Install Ansible via conda:
 
     $ conda install -c conda-forge ansible
 
-## Run Ansible in docker
+## Test Ansible using docker container
 
-Run ansible in docker container:
+Run Ansible in docker container:
 
     $ docker run -it --rm -v /home/pingu/sandbox/birdhouse/birdhouse-ansible:/opt/ansible ubuntu /bin/bash
     > cd /opt/ansible
-    > ./bootstrap.sh
+    > bash bootstrap.sh -i -p /opt/conda
+    > export PATH=/opt/conda/bin:$PATH
+    > cd gridengine
+    > ansible-playbook -i hosts playbooks/gridengine.yml
 
 ## Links
 
