@@ -1,4 +1,12 @@
 ---
+# Manage the /etc/hosts file
+- name: Edit /etc/hosts file
+  shell: |
+    for i in `seq 1 {{max_number_of_nodes}}`; do
+      item="{{vnode_prefix}}${i}";
+      grep -q "\<${item}\>" /etc/hosts || echo "127.0.0.1 ${item}" ${item} >> /etc/hosts;
+    done
+
 - name: create configuration directories
   file: path={{ item }} state=directory
   with_items:
@@ -18,6 +26,11 @@
 
 - name: add the frontend as submission host
   action: shell bash -lc 'qconf -as {{ sge_server_name }}'
+  ignore_errors: yes
+
+- name: add execution hosts
+  action: shell bash -lc 'qconf -ah {{vnode_prefix}}{{item}}'
+  with_sequence: start=1 end={{max_number_of_nodes}}
   ignore_errors: yes
 
 - name: Copy 'default_q.conf' file

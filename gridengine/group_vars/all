@@ -1,7 +1,11 @@
 ---
 # Variables listed here are applicable to all host groups
 
-# Type of node to install: front, worker or client
-sge_type_of_node: front
 # Name of the gridengine server
 sge_server_name: localhost
+# Type of node to install: front, worker or client
+sge_type_of_node: front
+# Prefix to set to the SGE working nodes
+vnode_prefix: wn
+# Number of Maximun nodes
+max_number_of_nodes: 1

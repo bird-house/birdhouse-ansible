@@ -1,2 +1,2 @@
 group_name @allhosts
-hostlist {{ sge_server_name }}
+hostlist  {{ sge_server_name }} {% for number in range(1, max_number_of_nodes|int + 1) %} {{vnode_prefix}}{{number}} {% endfor %}
