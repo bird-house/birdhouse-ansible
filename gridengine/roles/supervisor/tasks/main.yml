@@ -6,5 +6,10 @@
 - name: create supervisord.conf
   template: dest=/etc/supervisor/supervisord.conf src=supervisord.conf
 
-- name: create supervisor gridengine.conf
-  template: dest=/etc/supervisor/conf.d/gridengine.conf src=gridengine.conf
+- name: create supervisor sge_qmaster.conf
+  template: dest=/etc/supervisor/conf.d/sge_qmaster.conf src=sge_qmaster.conf
+  when: sge_type_of_node == "front"
+
+- name: create supervisor sge_execd.conf
+  template: dest=/etc/supervisor/conf.d/sge_execd.conf src=sge_execd.conf
+  when: sge_type_of_node == "wn"

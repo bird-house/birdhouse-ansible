@@ -24,4 +24,3 @@
 - name: Set Debian facts
   set_fact:
     SGE_ROOT: /var/lib/gridengine
-    EXEC_SERVICE: gridengine-exec
