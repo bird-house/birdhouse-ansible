@@ -1,5 +1,5 @@
 ---
-- name: create folders used by gridengine
+- name: create configuration directories
   file: path={{ item }} state=directory
   with_items:
     - /etc/gridengine/files/host_groups
@@ -8,9 +8,6 @@
 
 - name: Replace bootstrap (ignore FQDN)
   copy: dest=/var/lib/gridengine/default/common/bootstrap src=bootstrap mode=0644 force=no
-
-- name: Set the gridengine qmaster node
-  action: copy dest={{ SGE_ROOT }}/default/common/act_qmaster content={{ sge_server_name }}
 
 - name: create allhosts
   template: dest=/etc/gridengine/files/host_groups/allhosts src=allhosts

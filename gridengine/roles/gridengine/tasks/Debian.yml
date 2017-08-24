@@ -25,4 +25,3 @@
   set_fact:
     SGE_ROOT: /var/lib/gridengine
     EXEC_SERVICE: gridengine-exec
-  when: ansible_os_family == "Debian"

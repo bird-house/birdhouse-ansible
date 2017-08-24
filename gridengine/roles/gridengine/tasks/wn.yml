@@ -1,0 +1,7 @@
+---
+- name: create default directories
+  file: path={{ SGE_ROOT }}/default/common/ state=directory
+  when: ansible_os_family == "RedHat"
+
+- name: Set the gridengine qmaster node
+  action: copy dest={{ SGE_ROOT }}/default/common/act_qmaster content={{ sge_server_name }}
