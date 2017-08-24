@@ -2,6 +2,7 @@
 # Manage the /etc/hosts file
 - name: Edit /etc/hosts file
   shell: |
+    grep -q "\<{{sge_submission_node}}\>" /etc/hosts || echo "127.0.0.1 {{sge_submission_node}}" {{sge_submission_node}} >> /etc/hosts;
     for i in `seq 1 {{max_number_of_nodes}}`; do
       item="{{vnode_prefix}}${i}";
       grep -q "\<${item}\>" /etc/hosts || echo "127.0.0.1 ${item}" ${item} >> /etc/hosts;
@@ -26,6 +27,10 @@
 
 - name: add the frontend as submission host
   action: shell bash -lc 'qconf -as {{ sge_server_name }}'
+  ignore_errors: yes
+
+- name: add the submission node
+  action: shell bash -lc 'qconf -as {{ sge_submission_node }}'
   ignore_errors: yes
 
 - name: add execution hosts

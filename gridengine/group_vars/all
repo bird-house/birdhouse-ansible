@@ -5,6 +5,8 @@
 sge_server_name: localhost
 # Type of node to install: front, worker or client
 sge_type_of_node: front
+# Name of submission node
+sge_submission_node: localhost
 # Prefix to set to the SGE working nodes
 vnode_prefix: wn
 # Number of Maximun nodes
