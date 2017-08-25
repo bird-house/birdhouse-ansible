@@ -1,3 +1,1 @@
-* configure uid of subuser
-* configure submission host wps
 * fix sge_qmaster start in supervisor
