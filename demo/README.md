@@ -56,7 +56,7 @@ Make sure you are in the `ansible-demo/` folder.
 
 Start an Ubuntu Docker container and mount local source:
 
-    $ docker run  -v `pwd`:/src -w /src -it --rm  ubuntu bash
+    $ ./run_docker.sh
 
 Run the Ansible deployment:
 
