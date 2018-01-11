@@ -1,6 +1,12 @@
 # birdhouse-ansible
 Ansible playbooks for Birdhouse installation.
 
+## Available Ansible Playbooks
+
+* demo/ - Demo deployment on Emu PyWPS application.
+* slurm/ - Demo deployment of PyWPS with Slurm scheduler.
+* sge/ - Demo Deployment of PyWPS with GridEngine scheduler.
+
 ## Install Ansible
 
 Install Ansible via conda:
