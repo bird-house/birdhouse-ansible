@@ -66,12 +66,30 @@ Run the Ansible deployment:
 Check if application is started (supervisor):
 
     $ make status
+    OR
+    $ supervisorctl status
 
 Run a WPS GetCapabilites request:
 
     $ curl -s -o caps.xml \
-      "http://127.0.0.1:8000/wps?service=WPS&request=GetCapabilities"
+      "http://127.0.0.1:5000/wps?service=WPS&request=GetCapabilities"
     $ less caps.xml
+
+Check log files:
+
+    $ supervisorctl tail -f emu
+
+Try more WPS requests:
+
+    # show description of "hello" process
+    $ curl -s -o out.xml \
+      "http://127.0.0.1:5000/wps?service=WPS&request=DescribeProcess&version=1.0.0&identifier=hello"
+    $ less out.xml
+
+    # execute "hello" process
+    $ curl -s -o out.xml \
+      "http://127.0.0.1:5000/wps?service=WPS&request=Execute&version=1.0.0&identifier=hello&DataInputs=name=Spaetzle"
+    § less out.xml
 
 ## Food for Thought
 
