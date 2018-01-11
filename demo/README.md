@@ -36,7 +36,7 @@ A PyWPS service may be used in the following deployment scenarios:
 
 ## Run Ansible Demo
 
-This demo currently works only on Debin/Ubuntu. It will install the Emu PyWPS application on a single host including Nginx and Supervisor. Nginx, Supervisor and miniconda are installed on the System. The Emu PyWPS application is fetched from GitHub and dependencies are installed into a Conda environment.
+This demo currently works only on Debian/Ubuntu. It will install the Emu PyWPS application on a single host including Nginx and Supervisor. Nginx, Supervisor and miniconda are installed on the System. The Emu PyWPS application is fetched from GitHub and dependencies are installed into a Conda environment.
 
 ### Bootstrap
 
@@ -52,7 +52,7 @@ Run Ansible via Makefile ... it will also fetch required roles/recipes from ansi
 
 ## Try in a Docker container
 
-Make sure you are in the `ansible-demo/` folder.
+Make sure you are in the `demo/` folder.
 
 Start an Ubuntu Docker container and mount local source:
 
