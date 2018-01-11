@@ -1,6 +1,13 @@
 [program:{{ program_name }}]
 command=bash run.sh
 autostart=true
+autorestart=false
+numprocs=1
 directory={{ project_location }}
 redirect_stderr=true
 stdout_logfile=/var/log/supervisor/{{ program_name }}.log
+startsecs=1
+stopwaitsecs=30
+killasgroup=true
+stopasgroup=false
+stopsignal=TERM
