@@ -2,6 +2,10 @@
 
 This repository contains an example how to use Ansible for a PyWPS service.
 
+The demo is based on this example:
+
+https://tdhopper.com/blog/automating-python-with-ansible/
+
 ## Deployment Scenarios
 
 A PyWPS service may be used in the following deployment scenarios:
