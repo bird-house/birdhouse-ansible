@@ -14,6 +14,20 @@
   tags:
     conda
 
+- name: Create folders used by WPS and set owner
+  file: path={{ item }} state=directory owner=root group=root mode=0755
+  with_items:
+    - "{{ gunicorn_configs_path }}"
+  tags:
+    conf
+
+- name: Copy gunicorn config to remote
+  template:
+    src: ./templates/gunicorn.py.j2
+    dest: "{{ gunicorn_configs_path }}/{{ program_name }}.py"
+  tags:
+    conf
+
 - name: Copy supervisord job file to remote
   template:
     src: ./templates/supervisor.conf.j2
