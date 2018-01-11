@@ -1,0 +1,11 @@
+---
+# Variables listed here are applicable to all host groups
+
+conda_root: /usr/local
+conda_folder_name: anaconda
+
+supervisord_configs_path: /etc/supervisor/conf.d
+
+program_name: emu
+project_repo: https://github.com/bird-house/emu.git
+project_location: /opt/emu

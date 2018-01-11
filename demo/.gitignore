@@ -1,0 +1,8 @@
+# external roles from ansible-galaxy
+roles/andrewrothstein.bash
+roles/andrewrothstein.miniconda
+roles/andrewrothstein.unarchive-deps
+
+# temp files
+*.retry
+caps.xml

@@ -1,0 +1,13 @@
+---
+# This playbook is used for ansible demo.
+- hosts: localhost
+  roles:
+    - common
+    - role: andrewrothstein.miniconda
+      miniconda_parent_dir: "{{ conda_root }}"
+      miniconda_link_subdir: "{{ conda_folder_name }}"
+      tags:
+        miniconda
+    - supervisor
+    - nginx
+    - wps

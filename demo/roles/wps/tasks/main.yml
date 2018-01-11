@@ -1,0 +1,38 @@
+---
+- name: Clone project code.
+  git:
+    repo: "{{ project_repo }}"
+    dest: "{{ project_location }}"
+    update: yes
+  tags:
+    git
+
+- name: Create Conda environment from project environment file.
+  command: "{{conda_root}}/{{conda_folder_name}}/bin/conda env update"
+  args:
+    chdir: "{{ project_location }}"
+  tags:
+    conda
+
+- name: Copy supervisord job file to remote
+  template:
+    src: ./templates/supervisor.conf.j2
+    dest: "{{ supervisord_configs_path }}/{{ program_name }}.conf"
+    owner: root
+  tags:
+    conf
+
+- name: Copy start script to source folder
+  template:
+    src: ./templates/run.sh.j2
+    dest: "{{ project_location }}/run.sh"
+    owner: root
+  tags:
+    conf
+
+- name: Start job
+  supervisorctl:
+    name: "{{ program_name }}"
+    state: present
+  tags:
+    conf
