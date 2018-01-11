@@ -5,4 +5,5 @@ roles/andrewrothstein.unarchive-deps
 
 # temp files
 *.retry
+out.xml
 caps.xml
