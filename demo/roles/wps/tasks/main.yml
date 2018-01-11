@@ -18,6 +18,20 @@
   file: path={{ item }} state=directory owner=root group=root mode=0755
   with_items:
     - "{{ gunicorn_configs_path }}"
+    - "{{ pywps_configs_path }}"
+    - /var/lib/pywps/outputs
+    - /var/lib/pywps/outputs/{{ program_name }}
+    - /var/lib/pywps/tmp
+    - /var/lib/pywps/tmp/{{ program_name }}
+    - /var/log/pywps
+    - /var/lib/pywps/db
+  tags:
+    conf
+
+- name: Copy pywps config to remote
+  template:
+    src: ./templates/pywps.cfg.j2
+    dest: "{{ pywps_configs_path }}/{{ program_name }}.cfg"
   tags:
     conf
 

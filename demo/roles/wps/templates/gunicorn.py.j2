@@ -5,7 +5,7 @@ worker_class = 'sync'
 
 # environment
 raw_env = [
-  "PYWPS_CFG=/etc/pywps/{{ program_name }}.cfg",
+  "PYWPS_CFG={{ pywps_configs_path }}/{{ program_name }}.cfg",
 ]
 
 # logging

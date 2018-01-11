@@ -4,8 +4,9 @@
 conda_root: /usr/local
 conda_folder_name: anaconda
 
-gunicorn_configs_path: /etc/gunicorn
 supervisord_configs_path: /etc/supervisor/conf.d
+gunicorn_configs_path: /etc/gunicorn
+pywps_configs_path: /etc/pywps
 
 program_name: emu
 project_repo: https://github.com/bird-house/emu.git
