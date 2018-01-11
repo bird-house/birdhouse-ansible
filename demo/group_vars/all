@@ -4,6 +4,7 @@
 conda_root: /usr/local
 conda_folder_name: anaconda
 
+gunicorn_configs_path: /etc/gunicorn
 supervisord_configs_path: /etc/supervisor/conf.d
 
 program_name: emu
