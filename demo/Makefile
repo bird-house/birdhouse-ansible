@@ -18,6 +18,7 @@ help:
 	@echo "  version     to print version number of this Makefile."
 	@echo "  info        to print information about your System."
 	@echo "  install     to install application by running Ansible."
+	@echo "  clean       to delete all files that are created by running Ansible."
 	@echo "\nSupervisor targets:"
 	@echo "  status      to show supervisor status"
 
@@ -40,6 +41,12 @@ bootstrap:
 install: bootstrap
 	@echo "\nInstalling application with Ansible ..."
 	@ansible-playbook -c local playbook.yml
+
+.PHONY: clean
+clean:
+	@echo "Cleaning ..."
+	@git diff --quiet HEAD || echo "There are uncommited changes! Not doing 'git clean' ..."
+	@-git clean -dfx -e *.bak
 
 .PHONY: status
 status:
