@@ -2,5 +2,5 @@
 command=bash run.sh
 autostart=true
 directory={{ project_location }}
-stderr_logfile=/var/log/{{ program_name }}.err.log
-stdout_logfile=/var/log/{{ program_name }}.out.log
+redirect_stderr=true
+stdout_logfile=/var/log/supervisor/{{ program_name }}.log
