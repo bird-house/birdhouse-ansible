@@ -103,9 +103,13 @@ Try more WPS requests:
 * We need to provide a PyWPS micro-service docker container. This should simplify the Docker installation drastically ... might be just a simple Dockerfile template. Complexity will be moved to docker-compose to wire micro-services to serve as a single web application. The other micro-services should be official images on docker-cloud.
 * Ansible is currently installed via system packages. But it could also be installed via Conda. That would mean Conda needs to be installed first (bootstrap). But Conda can be installed and updated via Ansible (miniconda role from ansible-galaxy).    
 
+## Roles/Recipes from Ansible Galaxy
+
+* miniconda: https://galaxy.ansible.com/andrewrothstein/miniconda/
+* nginx: https://galaxy.ansible.com/jdauphant/nginx/
+
 ## Links
 
 * https://tdhopper.com/blog/automating-python-with-ansible/
 * https://plone-ansible-playbook.readthedocs.io/en/latest/index.html
 * http://docs.ansible.com/ansible/latest/intro_installation.html
-* https://galaxy.ansible.com/andrewrothstein/miniconda/
