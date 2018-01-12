@@ -5,11 +5,17 @@ upstream {{ program_name }} {
 }
 
 server {
-    listen              5000;
-    server_name         localhost;
+    listen {{ http_port }} default_server;
+    listen [::]:{{ http_port }} default_server;
+    server_name _;
 
-    # pywps avail at /wps
-    location ~ /wps/?(.*)$ {
+    # better to redirect / to wps application
+    location / {
+      return 301 /wps;
+    }
+
+    # PyWPS avail at /wps
+    location /wps {
         proxy_pass              http://{{ program_name }};
         proxy_set_header        X-Forwarded-Ssl on;
         proxy_set_header        X-Forwarded-Host $host/wps/;
@@ -19,6 +25,13 @@ server {
         proxy_buffering         on;
         client_max_body_size    64m;
         proxy_read_timeout      30s;
+    }
+
+    # PyWPS Outputs
+    location /outputs
+    {
+        alias /var/lib/pywps/outputs;
+        autoindex off;
     }
 
 }

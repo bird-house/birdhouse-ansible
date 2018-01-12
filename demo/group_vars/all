@@ -9,6 +9,9 @@ supervisord_configs_path: /etc/supervisor/conf.d
 gunicorn_configs_path: /etc/gunicorn
 pywps_configs_path: /etc/pywps
 
+# PyWPS
+http_port: 5000
+
 program_name: emu
 project_repo: https://github.com/bird-house/emu.git
 project_location: /opt/emu
