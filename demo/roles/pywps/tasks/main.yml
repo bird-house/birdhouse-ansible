@@ -57,6 +57,13 @@
   tags:
     conf
 
+- name: Copy nginx config for wps outputs to remote
+  template:
+    src: ./templates/nginx-wpsoutputs.conf.j2
+    dest: "{{ nginx_configs_path }}/wpsoutputs.conf"
+  tags:
+    conf
+
 - name: Copy start script to source folder
   template:
     src: ./templates/run.sh.j2
