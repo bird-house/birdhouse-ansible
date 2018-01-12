@@ -1,9 +1,7 @@
 ---
 - name: Install nginx
   when: ansible_os_family == 'Debian'
-  apt:
-    name=nginx
-    state=present
+  apt: name=nginx state=present
 
 - name: Get nginx version
   shell: "/usr/sbin/nginx -v 2>&1 >/dev/null | sed -r 'sX^.*nginx/([0-9.]+).*$X\\1X'"
@@ -17,12 +15,6 @@
     state: absent
   notify: restart nginx
 
-- name: nginx started
-  service:
-    name=nginx
-    state=started
-    enabled=yes
-
 - name: Assure nginx running at end of playbook
   command: /bin/true
-  notify: nginx started
+  notify: restart nginx
