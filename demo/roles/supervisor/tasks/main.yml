@@ -1,16 +1,10 @@
 ---
 - name: Install supervisord
-  become: true
-  when: ansible_os_family == 'Debian'
-  apt:
-    name: supervisor
-    state: present
-    update_cache: yes
+  package: name=supervisor state=latest
   tags:
     supervisor
 
 - name: Start supervisord
-  become: true
   service:
     name: "supervisor"
     state: started

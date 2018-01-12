@@ -1,7 +1,6 @@
 ---
 - name: Install nginx
-  when: ansible_os_family == 'Debian'
-  apt: name=nginx state=present
+  package: name=nginx state=latest
 
 - name: Get nginx version
   shell: "/usr/sbin/nginx -v 2>&1 >/dev/null | sed -r 'sX^.*nginx/([0-9.]+).*$X\\1X'"
