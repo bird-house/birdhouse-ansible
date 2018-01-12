@@ -1,13 +1,6 @@
 ---
 - name: Install supervisord
   package: name=supervisor state=latest
-  tags:
-    supervisor
-
-- name: Start supervisord
-  service:
-    name: "supervisor"
-    state: started
-    enabled: yes
+  notify: start supervisord
   tags:
     supervisor
