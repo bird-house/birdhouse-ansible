@@ -72,9 +72,8 @@
   tags:
     conf
 
-- name: Start job
-  supervisorctl:
-    name: "{{ program_name }}"
-    state: present
+- name: Assure application running at end of playbook
+  command: /bin/true
+  notify: restart pywps
   tags:
     conf
