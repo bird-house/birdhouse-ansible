@@ -1,0 +1,24 @@
+# pywps web processing service
+upstream {{ program_name }} {
+    # socket connection
+    server unix:///var/run/{{ program_name }}.socket fail_timeout=0;
+}
+
+server {
+    listen              5000;
+    server_name         localhost;
+
+    # pywps avail at /wps
+    location ~ /wps/?(.*)$ {
+        proxy_pass              http://{{ program_name }};
+        proxy_set_header        X-Forwarded-Ssl on;
+        proxy_set_header        X-Forwarded-Host $host/wps/;
+        proxy_set_header        X-Forwarded-Server $host;
+        proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_redirect          off;
+        proxy_buffering         on;
+        client_max_body_size    64m;
+        proxy_read_timeout      30s;
+    }
+
+}
