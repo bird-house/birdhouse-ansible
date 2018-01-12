@@ -1,0 +1,7 @@
+- name: Install common packages on Debian
+  apt: name={{ item }} state=installed
+  with_items:
+    - build-essential
+    - wget
+    - curl
+    - git
