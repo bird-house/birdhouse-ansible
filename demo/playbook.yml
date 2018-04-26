@@ -5,7 +5,7 @@
     - common
     - role: andrewrothstein.miniconda
       miniconda_parent_dir: "{{ prefix }}"
-      miniconda_make_sys_default: True
+      miniconda_make_sys_default: False
       tags:
         miniconda
     - supervisor
