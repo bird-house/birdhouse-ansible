@@ -2,6 +2,7 @@
 - name: Clone WPS.
   git:
     repo: "{{ wps_repo }}"
+    version: "{{ wps_version }}"
     dest: "{{ wps_location }}"
     update: yes
   tags:
