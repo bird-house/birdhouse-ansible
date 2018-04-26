@@ -16,8 +16,6 @@ bootstrap() {
         echo "Install Debian/Ubuntu packages ..."
         sudo apt-get -y update
         sudo apt-get -y install software-properties-common
-        # install base packages
-        sudo apt-get -y install build-essential
         # install ansible
         sudo apt-add-repository -y ppa:ansible/ansible
         sudo apt-get -y update
