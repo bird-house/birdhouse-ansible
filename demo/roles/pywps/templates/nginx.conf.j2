@@ -1,12 +1,12 @@
 # pywps web processing service
-upstream {{ program_name }} {
+upstream {{ wps_name }} {
     # socket connection
-    server unix:///var/run/{{ program_name }}.socket fail_timeout=0;
+    server unix:///var/run/{{ wps_name }}.socket fail_timeout=0;
 }
 
 server {
-    listen {{ http_port }} default_server;
-    listen [::]:{{ http_port }} default_server;
+    listen {{ wps_port }} default_server;
+    listen [::]:{{ wps_port }} default_server;
     server_name _;
 
     # better to redirect / to wps application
@@ -16,7 +16,7 @@ server {
 
     # PyWPS avail at /wps
     location /wps {
-        proxy_pass              http://{{ program_name }};
+        proxy_pass              http://{{ wps_name }};
         proxy_set_header        X-Forwarded-Ssl on;
         proxy_set_header        X-Forwarded-Host $host/wps/;
         proxy_set_header        X-Forwarded-Server $host;

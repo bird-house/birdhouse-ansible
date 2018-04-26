@@ -10,4 +10,4 @@
         miniconda
     - supervisor
     - nginx
-    # - pywps
+    - pywps

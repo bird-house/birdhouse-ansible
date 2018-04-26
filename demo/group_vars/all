@@ -3,15 +3,23 @@
 
 prefix: /usr/local
 
+# Conda
+conda_location: "{{ prefix }}/anaconda"
 
-nginx_configs_path: /etc/nginx/conf.d
-supervisord_configs_path: /etc/supervisor/conf.d
-gunicorn_configs_path: /etc/gunicorn
-pywps_configs_path: /etc/pywps
+# supervisord
+supervisord_etc_dir: /etc/supervisor
+
+# nginx
+nginx_etc_dir: /etc/nginx
+
+# gunicorn
+gunicorn_etc_dir: /etc/gunicorn
 
 # PyWPS
-http_port: 5000
+pywps_etc_dir: /etc/pywps
 
-program_name: emu
-project_repo: https://github.com/bird-house/emu.git
-project_location: /opt/emu
+# WPS
+wps_name: emu
+wps_repo: https://github.com/bird-house/{{ wps_name }}.git
+wps_location: "{{ prefix }}/{{ wps_name }}"
+wps_port: 5000
