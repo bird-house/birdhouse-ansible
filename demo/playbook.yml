@@ -8,6 +8,6 @@
       miniconda_make_sys_default: True
       tags:
         miniconda
-    # - supervisor
+    - supervisor
     # - nginx
     # - pywps
