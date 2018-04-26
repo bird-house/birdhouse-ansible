@@ -21,7 +21,7 @@ install_pkgs() {
     fi
 
     if [ -f /etc/debian_version ] ; then
-        echo "Install Debian/Ubuntu packages for Birdhouse build ..."
+        echo "Install Debian/Ubuntu packages for Ansible ..."
         sudo apt-get -y update
         sudo apt-get -y install software-properties-common
         # install base packages
@@ -32,14 +32,11 @@ install_pkgs() {
         sudo apt-get -y install ansible
         # sudo apt-get -y install vim-common # anaconda needs xxd
     elif [ -f /etc/redhat-release ] ; then
-        echo "Install CentOS packages for Birdhouse build ..."
-        sudo yum update -y && sudo yum install -y epel-release wget curl gcc-c++ make tar bzip2 unzip
-        # xlibs used by cairo
-        # sudo yum install -y libXrender libXext libX11
-        # sudo yum install -y vim-common  # anaconda needs xxd
+        echo "Install CentOS packages for Ansible ..."
+        # sudo yum update -y && sudo yum install -y epel-release wget curl gcc-c++ make tar bzip2 unzip
     elif [ `uname -s` = "Darwin" ] ; then
-        echo "Install Homebrew packages for Birdhouse build ..."
-        # brew install wget curl libmagic
+        echo "Install Homebrew packages for Ansible ..."
+        brew install ansible
     fi
 }
 
