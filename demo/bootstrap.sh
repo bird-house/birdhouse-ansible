@@ -1,16 +1,8 @@
 #!/bin/bash
 
-usage() {
-    cat <<EOT
-    Usage : bootstrap.sh [option]
+bootstrap() {
+    echo "Bootstrapping Ansible ..."
 
-    Options:
-        -h   - Print this help message.
-EOT
-    exit 1
-}
-
-install_pkgs() {
     if [[ $EUID -eq 0 ]]; then
         echo "Enable sudo ..."
         if [ -f /etc/debian_version ] ; then
@@ -21,7 +13,7 @@ install_pkgs() {
     fi
 
     if [ -f /etc/debian_version ] ; then
-        echo "Install Debian/Ubuntu packages for Ansible ..."
+        echo "Install Debian/Ubuntu packages ..."
         sudo apt-get -y update
         sudo apt-get -y install software-properties-common
         # install base packages
@@ -32,38 +24,13 @@ install_pkgs() {
         sudo apt-get -y install ansible
         # sudo apt-get -y install vim-common # anaconda needs xxd
     elif [ -f /etc/redhat-release ] ; then
-        echo "Install CentOS packages for Ansible ..."
+        echo "Install CentOS packages ..."
         # sudo yum update -y && sudo yum install -y epel-release wget curl gcc-c++ make tar bzip2 unzip
     elif [ `uname -s` = "Darwin" ] ; then
-        echo "Install Homebrew packages for Ansible ..."
+        echo "Install Homebrew packages ..."
         brew install ansible
     fi
 }
 
-bootstrap() {
-    echo "Bootstrapping ..."
 
-    if [ $# -eq 0 ] || [ $1 = '-b' ] || [ $1 = '-i' ]; then
-        install_pkgs
-    fi
-
-    echo "Bootstrapping done"
-}
-
-# Handling arguments
-
-if [ $# -gt 1 ]; then
-    echo -e "Too many arguments.\n"
-    usage
-fi
-
-if [ $# -gt 0 ] && [ $1 = '-h' ]; then
-    usage
-fi
-
-if [ $# -eq 0 ]; then
-    bootstrap $@
-else
-    echo -e "Unknown option: $1.\n"
-    usage
-fi
+bootstrap
