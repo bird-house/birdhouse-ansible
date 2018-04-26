@@ -108,6 +108,11 @@ Try more WPS requests:
 * miniconda: https://galaxy.ansible.com/andrewrothstein/miniconda/
 * nginx: https://galaxy.ansible.com/jdauphant/nginx/
 
+## Makefile replacement
+
+Python pave can be used to replace Makefile:
+* https://pypi.org/project/Paver/
+
 ## Links
 
 * https://tdhopper.com/blog/automating-python-with-ansible/
