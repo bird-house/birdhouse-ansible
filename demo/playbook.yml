@@ -9,5 +9,5 @@
       tags:
         miniconda
     - supervisor
-    # - nginx
+    - nginx
     # - pywps

@@ -2,11 +2,6 @@
 - name: Install nginx
   package: name=nginx state=latest
 
-- name: Get nginx version
-  shell: "/usr/sbin/nginx -v 2>&1 >/dev/null | sed -r 'sX^.*nginx/([0-9.]+).*$X\\1X'"
-  register: nginx_v_result
-  become: no
-
 - name: Make sure sample host is absent
   when: ansible_os_family == 'Debian'
   file:
@@ -14,6 +9,13 @@
     state: absent
   notify: restart nginx
 
+- name: Make sure sample host is absent
+  when: ansible_os_family == 'RedHat'
+  file:
+    path: /etc/nginx/conf.d/default.conf
+    state: absent
+  notify: restart nginx
+
 - name: Assure nginx running at end of playbook
   command: /bin/true
-  notify: restart nginx
+  notify: nginx started
