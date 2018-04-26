@@ -1,6 +1,12 @@
 ---
 - name: Install nginx
-  package: name=nginx state=latest
+  when: ansible_os_family == 'Debian'
+  apt: name=nginx-full state=latest
+  notify: nginx started
+
+- name: Install nginx
+  when: ansible_os_family == 'RedHat'
+  yum: name=nginx state=latest
   notify: nginx started
 
 - name: Make sure sample host is absent
