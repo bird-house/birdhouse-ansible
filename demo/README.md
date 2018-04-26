@@ -50,9 +50,17 @@ Run bootstrap script (only once) to prepare your system and install Ansible:
 
 ### Run Ansible
 
-Run Ansible via Makefile ... it will also fetch required roles/recipes from ansible-galaxy:
+Fetch required roles/recipes from ansible-galaxy:
 
-    $ make install
+    $ ansible-galaxy -p roles -r requirements.yml install
+
+Run playbook:
+
+    $ ansible-playbook -c local playbook.yml
+
+Or use the shortcut to run both:
+
+    $ ./play.sh
 
 ## Try in a Docker container
 
@@ -65,12 +73,10 @@ Start an Ubuntu Docker container and mount local source:
 Run the Ansible deployment:
 
     $ ./bootstrap.sh
-    $ make install
+    $ ./play.sh
 
 Check if application is started (supervisor):
 
-    $ make status
-    OR
     $ supervisorctl status
 
 Run a WPS GetCapabilites request:
