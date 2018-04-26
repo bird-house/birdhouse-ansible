@@ -3,3 +3,4 @@
   with_items:
     - gcc-c++
     - make
+    - ansible
