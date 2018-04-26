@@ -1,8 +1,8 @@
 ---
 # Variables listed here are applicable to all host groups
 
-conda_root: /usr/local
-conda_folder_name: anaconda
+prefix: /usr/local
+
 
 nginx_configs_path: /etc/nginx/conf.d
 supervisord_configs_path: /etc/supervisor/conf.d
