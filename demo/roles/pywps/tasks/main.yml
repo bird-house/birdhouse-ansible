@@ -15,6 +15,11 @@
   tags:
     conda
 
+- name: Install additional Conda packages.
+  command: "{{ conda_location }}/bin/conda install -n {{ wps_name }} gunicorn"
+  tags:
+    conda
+
 - name: Create folders used by PyWPS and set owner
   file: path={{ item }} state=directory owner=root group=root mode=0755
   with_items:
