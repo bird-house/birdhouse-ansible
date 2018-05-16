@@ -10,6 +10,7 @@ help:
 	@echo "  bootstrap   to boostrap Ansible installation."
 	@echo "  roles       to install roles from ansible-galaxy."
 	@echo "  play        to run ansible playbook."
+	@echo "  clean       to remove *all* files that are not controlled by 'git'. WARNING: use it *only* if you know what you do!"
 
 .PHONY: bootstrap
 bootstrap:
@@ -25,3 +26,9 @@ roles:
 play: roles
 	echo "Installing PyWPS application with Ansible ..."
 	ansible-playbook -c local playbook.yml
+
+.PHONY: clean
+clean:
+	@echo "Cleaning ..."
+	@git diff --quiet HEAD || echo "There are uncommited changes! Not doing 'git clean' ..."
+	@-git clean -dfx -e *.bak -e custom.cfg
