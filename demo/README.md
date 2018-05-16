@@ -127,6 +127,7 @@ Python pave can be used to replace Makefile:
 ## Links
 
 * https://tdhopper.com/blog/automating-python-with-ansible/
+* https://serversforhackers.com/c/an-ansible-tutorial
 * https://plone-ansible-playbook.readthedocs.io/en/latest/index.html
 * http://docs.ansible.com/ansible/latest/intro_installation.html
 * https://github.com/geocontainers/
