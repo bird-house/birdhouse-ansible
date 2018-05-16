@@ -60,7 +60,7 @@ Run playbook:
 
 Or use the shortcut to run both:
 
-    $ ./play.sh
+    $ make play
 
 ## Customizing the deployment
 
