@@ -79,6 +79,11 @@ Check if application is started (supervisor):
 
     $ supervisorctl status
 
+Check also nginx ... might not start automatically in docker:
+
+     $ service nginx status
+     $ service nginx start # if not already started
+
 Run a WPS GetCapabilites request:
 
     $ curl -s -o caps.xml \
