@@ -14,16 +14,17 @@ bootstrap() {
 
     if [ -f /etc/debian_version ] ; then
         echo "Install Debian/Ubuntu packages ..."
-        sudo apt-get -y update
-        sudo apt-get -y install software-properties-common
+        sudo apt-get update -y
+        sudo apt-get install -y software-properties-common build-essential
         # install ansible
         sudo apt-add-repository -y ppa:ansible/ansible
-        sudo apt-get -y update
-        sudo apt-get -y install ansible
-        # sudo apt-get -y install vim-common # anaconda needs xxd
+        sudo apt-get update -y
+        sudo apt-get install -y ansible
+        # sudo apt-get install -y vim-common # anaconda needs xxd
     elif [ -f /etc/redhat-release ] ; then
         echo "Install CentOS packages ..."
-        # sudo yum update -y && sudo yum install -y epel-release wget curl gcc-c++ make tar bzip2 unzip
+        sudo yum update -y
+        sudo yum install -y epel-release gcc-c++ make
     elif [ `uname -s` = "Darwin" ] ; then
         echo "Install Homebrew packages ..."
         brew install ansible
