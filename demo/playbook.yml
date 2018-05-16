@@ -3,7 +3,7 @@
 - hosts: localhost
 
   pre_tasks:
-    - name: Include vars from local-configure.yml if found
+    - name: Include vars from custom.yml if found
       include_vars: "{{ item }}"
       with_first_found:
        - custom.yml
