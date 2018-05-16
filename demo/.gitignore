@@ -1,3 +1,6 @@
+# custom configuration
+local-configure.yml
+
 # external roles from ansible-galaxy
 roles/andrewrothstein.bash
 roles/andrewrothstein.miniconda
