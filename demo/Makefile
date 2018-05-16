@@ -7,8 +7,14 @@ all: help
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
 	@echo "  help        to print this help message. (Default)"
+	@echo "  bootstrap   to boostrap Ansible installation."
 	@echo "  roles       to install roles from ansible-galaxy."
 	@echo "  play        to run ansible playbook."
+
+.PHONY: bootstrap
+bootstrap:
+	@echo "Bootstrap Ansible ..."
+	@bash bootstrap.sh
 
 .PHONY: roles
 roles:
