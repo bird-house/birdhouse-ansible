@@ -1,6 +1,13 @@
 ---
-# This playbook is used for ansible demo.
+# This Ansible playbook is used to deploy a PyWPS application.
 - hosts: localhost
+
+  pre_tasks:
+    - name: Include vars from local-configure.yml if found
+      include_vars: "{{ item }}"
+      with_first_found:
+       - custom.yml
+       - null.yml
   roles:
     - common
     - role: andrewrothstein.miniconda

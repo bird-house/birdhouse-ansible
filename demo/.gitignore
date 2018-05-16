@@ -1,5 +1,5 @@
 # custom configuration
-local-configure.yml
+custom.yml
 
 # external roles from ansible-galaxy
 roles/andrewrothstein.bash
