@@ -1,7 +1,7 @@
 #!/bin/bash
 
 bootstrap() {
-    echo "Bootstrapping Ansible ..."
+    echo "Bootstrap Ansible and install required system packages ..."
 
     if [[ $EUID -eq 0 ]]; then
         echo "Enable sudo ..."
