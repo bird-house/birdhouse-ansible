@@ -3,7 +3,7 @@ Ansible playbooks for Birdhouse installation.
 
 ## Available Ansible Playbooks
 
-* demo/ - Demo deployment on Emu PyWPS application.
+* Demo deployment of Emu PyWPS application: moved to https://github.com/bird-house/ansible-wps-playbook
 * slurm/ - Demo deployment of PyWPS with Slurm scheduler.
 * sge/ - Demo Deployment of PyWPS with GridEngine scheduler.
 
