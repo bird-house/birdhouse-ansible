@@ -6,12 +6,25 @@ An ansible playbook to install slurm for Birdhouse demo.
 
 Run playbook with defaults:
 
-  $ ansible-playbook playbooks/slurm.yml
+  $ ansible-playbook playbook.yml
 
 Run playbook with `slurm` hostname:
 
-  $ ansible-playbook playbooks/slurm.yml -e slurm_server_name=slurm
+  $ ansible-playbook playbook.yml -e slurm_server_name=slurm
 
+## Test with Vagrant
+
+Setup Vagrant box and run ansible:
+
+  $ vagrant up
+
+Update with ansible:
+
+  $ vagrant provision
+
+Remove Vagrant box:
+
+  $ vagrant destroy -f
 
 ## Links
 

@@ -6,11 +6,3 @@
     packages:
       - build-essential
       - libssl-dev
-
-- name: Remove unwanted packages on Debian
-  apt:
-    name: "{{ packages }}"
-    state: absent
-  vars:
-    packages:
-      - supervisor
