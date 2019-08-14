@@ -1,8 +1,0 @@
----
-# This playbook is used to install slurm.
-- hosts: all
-  roles:
-    - common
-    - munge
-    - slurm
-    - supervisor

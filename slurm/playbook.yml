@@ -1,0 +1,20 @@
+---
+# This Ansible playbook is used to deploy Slurm
+- name: Install Slurm
+  hosts: all
+  become: yes
+
+  vars_files:
+    - vars/main.yml
+
+  pre_tasks:
+    - name: Include vars from custom.yml if found
+      include_vars: "{{ item }}"
+      with_first_found:
+       - custom.yml
+       - null.yml
+  roles:
+    - common
+    - munge
+    - slurm
+    - supervisor

@@ -102,3 +102,6 @@ ENV/
 
 # Ansible
 *.retry
+
+# Vagrant
+.vagrant
