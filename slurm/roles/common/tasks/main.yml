@@ -1,4 +1,2 @@
----
-- name: Install common packages on Debian
-  apt: name=build-essential
+- include_tasks: Debian.yml
   when: ansible_os_family == "Debian"
